@@ -1,7 +1,12 @@
 # Eureka Server - Intranet Microservices
 
+![Maven](https://img.shields.io/badge/Maven-3.9.6-blue)
+![Java](https://img.shields.io/badge/Java-21-brightgreen)
+![Docker](https://img.shields.io/badge/Docker-ready-blue)
+![Status](https://img.shields.io/badge/Status-Development-orange)
+
 **Service Discovery** para la plataforma de intranet corporativa.  
-Este microservicio se encarga de registrar y gestionar otros servicios dentro del ecosistema de microservicios.
+Este microservicio se encarga de **registrar y monitorear otros servicios** dentro del ecosistema de microservicios.
 
 ---
 
@@ -10,6 +15,7 @@ Este microservicio se encarga de registrar y gestionar otros servicios dentro de
 - Registro automático de microservicios.
 - Dashboard web para monitoreo.
 - Health checks integrados vía Spring Boot Actuator.
+- Contenerizable con Docker para despliegue rápido.
 
 ---
 
@@ -19,13 +25,11 @@ Este microservicio se encarga de registrar y gestionar otros servicios dentro de
 - **Dashboard**: [http://localhost:8761](http://localhost:8761)  
 - **Health Check**: [http://localhost:8761/actuator/health](http://localhost:8761/actuator/health)
 
-> Asegúrate de que los microservicios que deseas registrar estén configurados con Eureka Client y apunten a este servidor.
+> Todos los microservicios que se quieran registrar deben tener **Eureka Client** configurado apuntando a este servidor.
 
 ---
 
-## Servicios Registrados (Ejemplo)
-
-Durante el desarrollo, los siguientes servicios pueden registrarse automáticamente:
+## 📝 Servicios Registrados (Ejemplo)
 
 | Servicio         | Puerto |
 |-----------------|--------|
@@ -33,11 +37,11 @@ Durante el desarrollo, los siguientes servicios pueden registrarse automáticame
 | `user-service`   | 8082   |
 | `api-gateway`    | 8080   |
 
-> Nota: Esta tabla es solo un ejemplo. Los servicios activos dependerán del entorno de despliegue.
+> Nota: Esta tabla es solo de ejemplo. Los servicios activos dependen del entorno de despliegue.
 
 ---
 
-## Ejecutar localmente
+## 💻 Ejecutar localmente
 
 ### Con Maven
 
