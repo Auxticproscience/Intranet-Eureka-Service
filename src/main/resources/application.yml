@@ -1,0 +1,106 @@
+# Server Configuration
+server:
+  port: 8761
+
+# Application Config
+spring:
+  application:
+    name: eureka-server
+    profiles:
+      active: dev
+
+# Eureka Server config
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+  client:
+    register-with-eureka: false # Don't register itself
+    fetch-register: false # Don't search others registers
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    registry-fetch-interval-seconds: 5
+  server: # Dev Config
+      wait-time-in-ms-when-sync-empty: 3000
+      response-cache-update-interval-ms: 5000
+      response-cache-auto-expiration-in-seconds: 180
+      eviction-interval-timer-in-ms: 5000
+      enable-self-preservation: false   # Disabled for dev
+      renewal-percent-threshold: 0.49
+
+# Actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, env
+  endpoint:
+    health:
+      show-details: always
+    info:
+      env:
+        enabled: true
+# App info
+info:
+  app:
+    name: Eureka Discovery Server
+    description: Service Discovery for Corporative Intranet
+    version: 1.0.0
+    developer: Luis Velez
+
+# Logging config
+logging:
+  level:
+    com.netflix.eureka: INFO
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+    org.springframework.security: INFO
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+---
+# DEV profile
+# spring:
+##  config:
+##    activate:
+##      on-profile: dev
+
+## eureka:
+##  server:
+##    enable-self-preservation: false
+##    eviction-interval-timer-in-ms: 5000
+
+## logging:
+##  level:
+##    root: DEBUG
+
+---
+## Production Profile
+#spring:
+#  config:
+#    activate:
+#      on-profile: prod
+#
+#eureka:
+#  server:
+#    enable-self-preservation: true
+#    eviction-interval-timer-in-ms: 60000
+#
+#logging:
+#  level:
+#    root: WARN
+
+eureka-server/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/intranet/eureka/
+│       │       └── EurekaServerApplication.java
+│       └── resources/
+│           ├── application.yml
+├── pom.xml
+└── README.md
