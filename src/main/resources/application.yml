@@ -3,6 +3,8 @@
 # =========================
 server:
   port: 8761
+  servlet:
+    context-path: /
 
 # =========================
 # Application Config
@@ -18,16 +20,16 @@ spring:
 # =========================
 eureka:
   instance:
-    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:intranet-eukera-server.onrender.com}
     prefer-ip-address: false
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
 
   client:
     register-with-eureka: false
-    fetch-register: false
+    fetch-registry: false
     service-url:
-      default-zone: ${EUREKA_DEFAULT_ZONE:http://${eureka.instance.hostname}:${server.port}/eureka/}
+      default-zone: https://${EUREKA_INSTANCE_HOSTNAME}/eureka/
     registry-fetch-interval-seconds: 5
 
   server:
@@ -35,7 +37,7 @@ eureka:
     response-cache-update-interval-ms: 5000
     response-cache-auto-expiration-in-seconds: 180
     eviction-interval-timer-in-ms: 5000
-    enable-self-preservation: false   # disabled for dev
+    enable-self-preservation: false
     renewal-percent-threshold: 0.49
 
 # =========================
