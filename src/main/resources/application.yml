@@ -1,36 +1,46 @@
+# =========================
 # Server Configuration
+# =========================
 server:
   port: 8761
 
+# =========================
 # Application Config
+# =========================
 spring:
   application:
     name: eureka-server
-    profiles:
-      active: dev
+  profiles:
+    active: dev
 
-# Eureka Server config
+# =========================
+# Eureka Server Config
+# =========================
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
     prefer-ip-address: false
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
-  client:
-    register-with-eureka: false # Don't register itself
-    fetch-register: false # Don't search others registers
-    service-url:
-      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
-    registry-fetch-interval-seconds: 5
-  server: # Dev Config
-      wait-time-in-ms-when-sync-empty: 3000
-      response-cache-update-interval-ms: 5000
-      response-cache-auto-expiration-in-seconds: 180
-      eviction-interval-timer-in-ms: 5000
-      enable-self-preservation: false   # Disabled for dev
-      renewal-percent-threshold: 0.49
 
-# Actuator config
+  client:
+    register-with-eureka: false
+    fetch-register: false
+    service-url:
+      default-zone: ${EUREKA_DEFAULT_ZONE:http://${eureka.instance.hostname}:${server.port}/eureka/}
+    registry-fetch-interval-seconds: 5
+
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+    response-cache-update-interval-ms: 5000
+    response-cache-auto-expiration-in-seconds: 180
+    eviction-interval-timer-in-ms: 5000
+    enable-self-preservation: false   # disabled for dev
+    renewal-percent-threshold: 0.49
+
+# =========================
+# Actuator Config
+# =========================
 management:
   endpoints:
     web:
@@ -42,7 +52,10 @@ management:
     info:
       env:
         enabled: true
-# App info
+
+# =========================
+# Application Info
+# =========================
 info:
   app:
     name: Eureka Discovery Server
@@ -50,7 +63,9 @@ info:
     version: 1.0.0
     developer: Luis Velez
 
-# Logging config
+# =========================
+# Logging Config
+# =========================
 logging:
   level:
     com.netflix.eureka: INFO
@@ -62,45 +77,38 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
+# =========================
+# DEV PROFILE
+# =========================
 ---
-# DEV profile
-# spring:
-##  config:
-##    activate:
-##      on-profile: dev
+spring:
+  config:
+    activate:
+      on-profile: dev
 
-## eureka:
-##  server:
-##    enable-self-preservation: false
-##    eviction-interval-timer-in-ms: 5000
+eureka:
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
 
-## logging:
-##  level:
-##    root: DEBUG
+logging:
+  level:
+    root: DEBUG
 
+# =========================
+# PROD PROFILE
+# =========================
 ---
-## Production Profile
-#spring:
-#  config:
-#    activate:
-#      on-profile: prod
-#
-#eureka:
-#  server:
-#    enable-self-preservation: true
-#    eviction-interval-timer-in-ms: 60000
-#
-#logging:
-#  level:
-#    root: WARN
+spring:
+  config:
+    activate:
+      on-profile: prod
 
-eureka-server/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/intranet/eureka/
-│       │       └── EurekaServerApplication.java
-│       └── resources/
-│           ├── application.yml
-├── pom.xml
-└── README.md
+eureka:
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 60000
+
+logging:
+  level:
+    root: WARN
