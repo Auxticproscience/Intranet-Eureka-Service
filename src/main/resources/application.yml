@@ -2,7 +2,7 @@
 # Server Configuration
 # =========================
 server:
-  port: ${PORT:8761}
+  port: ${PORT}
   servlet:
     context-path: /
 
@@ -11,16 +11,16 @@ server:
 # =========================
 spring:
   application:
-    name: ${SPRING_APPLICATION_NAME:eureka-server}
+    name: ${SPRING_APPLICATION_NAME}
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:prod}
+    active: ${SPRING_PROFILES_ACTIVE}
 
 # =========================
 # Eureka Server Config
 # =========================
 eureka:
   instance:
-    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME}
     prefer-ip-address: false
     non-secure-port-enabled: false
     secure-port-enabled: true
@@ -69,7 +69,7 @@ info:
   app:
     name: Eureka Discovery Server
     description: Service Discovery for Corporative Intranet
-    version: 1.0.0
+    version: 1.0.2
     developer: Luis Velez
 
 # =========================
