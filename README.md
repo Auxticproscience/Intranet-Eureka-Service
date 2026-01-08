@@ -36,6 +36,7 @@ Este microservicio se encarga de **registrar y monitorear otros servicios** dent
 | `api-gateway`   | 8080  |
 | `auth-service`   | 8081   |
 | `user-service`    | 8082  |
+| `academy-service`    | 8083  |
 
 
 ---
