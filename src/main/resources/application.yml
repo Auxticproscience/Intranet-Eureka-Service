@@ -20,7 +20,7 @@ spring:
 # =========================
 eureka:
   instance:
-    hostname: ${EUREKA_INSTANCE_HOSTNAME}
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
     prefer-ip-address: false
     non-secure-port-enabled: false
     secure-port-enabled: true
