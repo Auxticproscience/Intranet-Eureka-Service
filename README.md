@@ -29,15 +29,14 @@ Este microservicio se encarga de **registrar y monitorear otros servicios** dent
 
 ---
 
-## 📝 Servicios Registrados (Ejemplo)
+## 📝 Servicios Registrados
 
 | Servicio         | Puerto |
 |-----------------|--------|
+| `api-gateway`   | 8080  |
 | `auth-service`   | 8081   |
-| `user-service`   | 8082   |
-| `api-gateway`    | 8080   |
+| `user-service`    | 8082  |
 
-> Nota: Esta tabla es solo de ejemplo. Los servicios activos dependen del entorno de despliegue.
 
 ---
 
