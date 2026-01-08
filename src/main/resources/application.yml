@@ -109,7 +109,7 @@ spring:
 
 eureka:
   server:
-    enable-self-preservation: true
+    enable-self-preservation: false
     eviction-interval-timer-in-ms: 60000
 
 logging:
